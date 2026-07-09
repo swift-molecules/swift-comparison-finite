@@ -1,12 +1,14 @@
 import Comparison_Finite_Primitives
 import Testing
 
-@Suite("Enumerable Tests")
-struct EnumerableTests {
-    @Suite struct Unit {}
+extension Comparison {
+    @Suite("Enumerable Tests")
+    struct Test {
+        @Suite struct Unit {}
+    }
 }
 
-extension EnumerableTests.Unit {
+extension Comparison.Test.Unit {
     @Test
     func `count is three`() {
         #expect(Comparison.count == 3)
