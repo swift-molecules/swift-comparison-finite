@@ -1,4 +1,4 @@
-import Comparison_Finite_Primitives
+import Comparison_Finite
 import Testing
 
 extension Comparison {

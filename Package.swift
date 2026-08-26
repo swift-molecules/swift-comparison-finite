@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-comparison-finite-primitives",
+    name: "swift-comparison-finite",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,59 +13,59 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Comparison Finite Primitives",
-            targets: ["Comparison Finite Primitives"]
+            name: "Comparison Finite",
+            targets: ["Comparison Finite"]
         ),
         .library(
-            name: "Comparison Finite Primitives Test Support",
-            targets: ["Comparison Finite Primitives Test Support"]
+            name: "Comparison Finite Test Support",
+            targets: ["Comparison Finite Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-finite-primitives.git",
+            url: "https://github.com/swift-molecules/swift-finite.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-comparison-primitives.git",
+            url: "https://github.com/swift-molecules/swift-comparison.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-pair-primitives.git",
+            url: "https://github.com/swift-molecules/swift-pair.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-cardinal-primitives.git",
+            url: "https://github.com/swift-molecules/swift-cardinal.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ordinal-primitives.git",
+            url: "https://github.com/swift-molecules/swift-ordinal.git",
             branch: "main"
         ),
     ],
     targets: [
         .target(
-            name: "Comparison Finite Primitives",
+            name: "Comparison Finite",
             dependencies: [
-                .product(name: "Finite Enumerable Primitives", package: "swift-finite-primitives"),
-                .product(name: "Comparison Primitives", package: "swift-comparison-primitives"),
-                .product(name: "Pair Primitives", package: "swift-pair-primitives"),
-                .product(name: "Cardinal Primitives", package: "swift-cardinal-primitives"),
-                .product(name: "Ordinal Primitives", package: "swift-ordinal-primitives"),
+                .product(name: "Finite Enumerable", package: "swift-finite"),
+                .product(name: "Comparison", package: "swift-comparison"),
+                .product(name: "Pair", package: "swift-pair"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
         .target(
-            name: "Comparison Finite Primitives Test Support",
+            name: "Comparison Finite Test Support",
             dependencies: [
-                "Comparison Finite Primitives"
+                "Comparison Finite"
             ],
             path: "Tests/Support"
         ),
         .testTarget(
-            name: "Comparison Finite Primitives Tests",
+            name: "Comparison Finite Tests",
             dependencies: [
-                "Comparison Finite Primitives",
-                "Comparison Finite Primitives Test Support",
+                "Comparison Finite",
+                "Comparison Finite Test Support",
             ]
         ),
     ],

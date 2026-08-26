@@ -1,8 +1,8 @@
-import Cardinal_Primitives
-public import Comparison_Primitives
-public import Finite_Enumerable_Primitives
-import Ordinal_Primitives
-public import Pair_Primitives
+import Cardinal
+public import Comparison
+public import Finite_Enumerable
+import Ordinal
+public import Pair
 
 extension Comparison {
 

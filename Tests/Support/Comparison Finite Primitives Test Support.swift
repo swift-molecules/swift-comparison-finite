@@ -1,1 +1,0 @@
-internal import Comparison_Finite_Primitives

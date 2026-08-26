@@ -1,4 +1,4 @@
-# Comparison Finite Primitives
+# Comparison Finite
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
@@ -8,10 +8,10 @@ Finite-enumerable conformance for the three-valued `Comparison` result — type-
 
 ## Quick Start
 
-`Comparison` is the three-valued ordering result (`.less`, `.equal`, `.greater`) from `Comparison Primitives`. This package conforms it to `Finite.Enumerable`, so it carries its arity in the type, maps each case to an `Ordinal`, and round-trips back from an ordinal — the same isomorphism every other enumerable primitive uses.
+`Comparison` is the three-valued ordering result (`.less`, `.equal`, `.greater`) from `Comparison`. This package conforms it to `Finite.Enumerable`, so it carries its arity in the type, maps each case to an `Ordinal`, and round-trips back from an ordinal — the same isomorphism every other enumerable primitive uses.
 
 ```swift
-import Comparison_Finite_Primitives
+import Comparison_Finite
 
 // Arity lives in the type: there are exactly three comparison values.
 print(Comparison.count)   // 3   (a Cardinal)
@@ -25,7 +25,7 @@ for comparison in Comparison.allCases {
 Round-trip through the ordinal — the unchecked fast path when the ordinal is trusted, the failable `init?` when it is not:
 
 ```swift
-import Comparison_Finite_Primitives
+import Comparison_Finite
 
 // Trusted ordinal: no bounds check.
 let greater = Comparison(_unchecked: (), ordinal: 2)   // .greater
@@ -38,7 +38,7 @@ let invalid = Comparison(7)   // nil
 The conformance also exposes `Comparison.Value`, a `Comparison` paired with an arbitrary payload — useful for carrying a comparison result alongside the operands that produced it:
 
 ```swift
-import Comparison_Finite_Primitives
+import Comparison_Finite
 
 // Comparison.Value<Payload> == Pair<Comparison, Payload>
 let tagged: Comparison.Value<String> = .init(.less, "a < b")
@@ -50,7 +50,7 @@ let tagged: Comparison.Value<String> = .init(.less, "a < b")
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-comparison-finite-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-comparison-finite.git", branch: "main")
 ]
 ```
 
@@ -58,7 +58,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Comparison Finite Primitives", package: "swift-comparison-finite-primitives"),
+        .product(name: "Comparison Finite", package: "swift-comparison-finite"),
     ]
 )
 ```
@@ -69,12 +69,12 @@ Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 
 
 ## Architecture
 
-One conformance target plus its test-support re-export. The main target re-exports `Comparison Primitives`, `Finite Enumerable Primitives`, and `Pair Primitives`, so consumers get `Comparison` and its enumerable surface from a single import.
+One conformance target plus its test-support re-export. The main target re-exports `Comparison`, `Finite Enumerable`, and `Pair`, so consumers get `Comparison` and its enumerable surface from a single import.
 
 | Product | Target | Purpose |
 |---------|--------|---------|
-| `Comparison Finite Primitives` | `Sources/Comparison Finite Primitives/` | Retroactively conforms `Comparison` to `Finite.Enumerable` (`count`, `ordinal`, `init(_unchecked:ordinal:)`) and adds the `Comparison.Value<Payload>` pairing. |
-| `Comparison Finite Primitives Test Support` | `Tests/Support/` | Re-exports the main target for test consumers. |
+| `Comparison Finite` | `Sources/Comparison Finite/` | Retroactively conforms `Comparison` to `Finite.Enumerable` (`count`, `ordinal`, `init(_unchecked:ordinal:)`) and adds the `Comparison.Value<Payload>` pairing. |
+| `Comparison Finite Test Support` | `Tests/Support/` | Re-exports the main target for test consumers. |
 
 Foundation-free.
 
