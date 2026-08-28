@@ -1,7 +1,9 @@
-import Cardinal
+public import Cardinal
 public import Comparison
-public import Finite_Enumerable
-import Ordinal
+public import Comparison_Standard_Library_Integration
+public import Finite
+public import Finite_Ordinal
+public import Ordinal
 public import Pair
 
 extension Comparison {
@@ -12,19 +14,23 @@ extension Comparison {
 extension Comparison: @retroactive Finite.Enumerable {
 
     @inlinable
-    public static var count: Cardinal { 3 }
+    public static var count: Cardinal { Cardinal(3) }
 
     @inlinable
     public var ordinal: Ordinal {
         switch self {
-        case .less: 0
-        case .equal: 1
-        case .greater: 2
+        case .less: Ordinal(0)
+        case .equal: Ordinal(1)
+        case .greater: Ordinal(2)
         }
     }
 
     @inlinable
     public init(_unchecked: Void, ordinal: Ordinal) {
-        self = [.less, .equal, .greater][ordinal]
+        switch ordinal.rawValue {
+        case 0: self = .less
+        case 1: self = .equal
+        default: self = .greater
+        }
     }
 }

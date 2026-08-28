@@ -63,13 +63,13 @@ dependencies: [
 )
 ```
 
-Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 (or the matching Linux / Windows toolchain).
+Requires Swift 6.4 and macOS 27 / iOS 27 / tvOS 27 / watchOS 27 / visionOS 27 (or the matching Linux / Windows toolchain).
 
 ---
 
 ## Architecture
 
-One conformance target plus its test-support re-export. The main target re-exports `Comparison`, `Finite Enumerable`, and `Pair`, so consumers get `Comparison` and its enumerable surface from a single import.
+One conformance target plus its test-support re-export. The main target composes the atom-owned Comparison, Finite, Pair, Cardinal, and Ordinal domains with the Finite Ordinal owner of `Finite.Enumerable`, so consumers get the complete surface from a single import.
 
 | Product | Target | Purpose |
 |---------|--------|---------|
@@ -84,7 +84,7 @@ Foundation-free.
 
 | Platform | Status |
 |----------|--------|
-| macOS 26 | Full support |
+| macOS 27 | Full support |
 | Linux | Full support |
 | Windows | Full support |
 | iOS / tvOS / watchOS / visionOS | Supported |
